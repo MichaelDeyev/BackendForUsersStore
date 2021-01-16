@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<User, String> {//or JpaRepository???
     Optional<User> findByNickName(String nickName);
 
-    User findById(Long id);
+    Optional<User> findById(Long id);
+
+    Optional<User> deleteById(Long id);
 }
