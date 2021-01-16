@@ -1,4 +1,4 @@
-package com.deyevma.backendForUsersStore;
+package com.deyevma.backendForUsersStore.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
