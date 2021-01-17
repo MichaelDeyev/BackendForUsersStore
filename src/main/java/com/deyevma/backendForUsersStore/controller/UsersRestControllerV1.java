@@ -6,6 +6,7 @@ import com.deyevma.backendForUsersStore.model.User;
 import com.deyevma.backendForUsersStore.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,12 +22,14 @@ public class UsersRestControllerV1 {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('can.read')")// (get-request)  able only for users with "read rights"
     public User findById(@PathVariable Long id){
         return userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
     }
 
     @GetMapping("/nick_name/{nickName}")
+    @PreAuthorize("hasAuthority('can.read')")// (get-request)  able only for users with "read rights"
     public User findByEmail(@PathVariable String nickName){
         return userRepository.findByNickName(nickName)
                 .orElseThrow(UserNotFoundException::new);
@@ -34,19 +37,22 @@ public class UsersRestControllerV1 {
 
     @PostMapping//TODO create sign up page
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user) {// works but ID ignore users that have already exist, so the first user created by postman would has ID 1, not 4
+    @PreAuthorize("hasAuthority('can.write')")// (post-request)  able only for users with "write rights"
+    public User createUser(@RequestBody User user) {//TODO works but ID ignore users that have already exist, so the first user created by postman would has ID 1, not 4
         return userRepository.save(user);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id){//doesn't work
+    @PreAuthorize("hasAuthority('can.write')")// (delete-request)  able only for users with "read write"
+    public void deleteUser(@PathVariable Long id){//TODO doesn't work
         userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
         userRepository.deleteById(id);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@RequestBody User user, @PathVariable Long id){//don't know how test it
+    @PreAuthorize("hasAuthority('can.write')")// (put-request)  able only for users with "read write"
+    public User updateUser(@RequestBody User user, @PathVariable Long id){//TODO don't know how test it
         if (!user.getId().equals(id)){
             throw new UserIdMismatchException();
         }
