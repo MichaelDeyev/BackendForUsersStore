@@ -1,6 +1,7 @@
 package com.deyevma.backendForUsersStore.controller;
 
 import com.deyevma.backendForUsersStore.exceptions.UserIdMismatchException;
+import com.deyevma.backendForUsersStore.exceptions.UserIsAlreadyExistException;
 import com.deyevma.backendForUsersStore.exceptions.UserNotFoundException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -22,6 +23,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     protected ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request) {
         return handleExceptionInternal(ex, "User not found", new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+    @ExceptionHandler(UserIsAlreadyExistException.class)
+    protected ResponseEntity<Object> handleIsAlreadyExist(Exception ex, WebRequest request) {
+        return handleExceptionInternal(ex, "User is already exist", new HttpHeaders(), HttpStatus.ALREADY_REPORTED, request);
     }
 
     @ExceptionHandler({
