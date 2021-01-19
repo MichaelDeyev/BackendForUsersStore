@@ -13,13 +13,13 @@ public class User {
     private Long id;
 
     @Column(name = "nick_name")
-    private String nickName;//title
+    private String nickName;
 
     @Column(name = "password")
     private String password;
 
     @Column(name = "name")
-    private String name;//author
+    private String name;
 
     @Column(name = "phone_number")
     private Long phoneNumber;

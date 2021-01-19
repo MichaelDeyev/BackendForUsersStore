@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<h1>Registration</h1>
+<div class="container">
+    <form class="form-signin" method="post" action="/registration">
+        <h2 class="form-signin-heading">Login</h2>
+        <p>
+            <label for="nickName">Nickname</label>
+            <input type="text" id="nickName" name="nickName" class="form-control" placeholder="Your nickname" required>
+        </p>
+        <p>
+            <label for="name">First name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Your name" required>
+        </p>
+        <p>
+            <label for="phoneNumber">Phone number</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Your phone number" required>
+        </p>
+        <label for="role">Role</label>
+        <select id="role" name="role">
+            <option value="ADMIN">Administrator</option>
+            <option value="USER">User</option>
+        </select>
+        <p>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Your password" required>
+        </p>
+        <p>
+            <label for="password-rpt">Repeat Password</label>
+            <input type="password" id="password-rpt" name="password-rpt" class="form-control" placeholder="Repeat password" required>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+</div>
+</body>
+</html>
