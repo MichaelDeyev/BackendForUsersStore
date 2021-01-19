@@ -51,7 +51,7 @@ public class UsersRestControllerV1 {
                 .orElseThrow(UserNotFoundException::new);
     }
 
-    @PostMapping//TODO create sign up page
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('can.write')")// (post-request)  able only for users with "write rights"
     public User createUser(@RequestBody User user) {//TODO works but ID ignore users that have already exist, so the first user created by postman would has ID 1, not 4
@@ -68,7 +68,7 @@ public class UsersRestControllerV1 {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('can.write')")// (put-request)  able only for users with "read write"
-    public User updateUser(@RequestBody User user, @PathVariable Long id){//TODO don't know how test it
+    public User updateUser(@RequestBody User user, @PathVariable Long id){//TODO had not tested yet
         if (!user.getId().equals(id)){
             throw new UserIdMismatchException();
         }
