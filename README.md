@@ -13,7 +13,14 @@ IN PROGRES:
 LATER:
 1) Add auto changing user-status if user in not active in 5 minutes
 2) JWT-token functional
-3) Write unit-tests for all classes
+3) Creation pages from admin with html and rooting (роутинг) key. 
+  For example - Create page Test with any html and rooting key (/test). Then, if a plaine user sign in, the page (/test) will appear from DB.
+4) Write unit-tests for all classes
+
+TO IMPROVE
+1) Remove dublicates from userFromDBToRealUserMapper() in SecurityUser
+2) Edit @PreAuthorize("hasAuthority('can.write')") with hasPermission() method
+3) Add index.html file and all security relates with it
 
 
 ACTUAL BUGS:
@@ -22,7 +29,6 @@ ACTUAL BUGS:
 
 UNCORRECT WORK:
 1) Creating new user by postman (post-method /api/v1/users/admin/). New users ID starts from 1, despite the fact that there is already exist User with the same id in DB 
-
 
 DOESN'T WORK:
 1) Deleting user by postman (delete-method /api/v1/users/admin/{id})
