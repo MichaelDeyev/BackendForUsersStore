@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+<h1>Administration Page</h1>
+<div>
+    <h2>All users:</h2>
+    <div th:each="user : ${allUsers}" class="alert alert-info mt-2">
+        <h3 th:text="${user.nickName}"/>
+        <p th:text="${user.id}"/>
+        <a th:href=" '/api/v1/users/admin/' + ${user.id}">Property</a>
+    </div>
+</div>
+
+</body>
+</html>
